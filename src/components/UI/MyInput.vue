@@ -1,13 +1,13 @@
 <template>
   <div class="wrapper">
     <p class="wrapper__text" :text="text">{{ text }}</p>
-    <input for class="input" :placeholder="placeholder" />
+    <input class="input" :type="type" :placeholder="placeholder" />
   </div>
 </template>
 <script>
 export default {
   name: "my-input",
-  props: ["placeholder", 'text'],
+  props: ['placeholder', 'text', 'type'],
 };
 </script>
 <style lang="scss" scoped>
@@ -15,7 +15,7 @@ export default {
   position: relative;
   &__text {
     position: absolute;
-    top: 3px;
+    top: 4px;
     left: 16px;
     bottom: 22px;
     font-weight: 400;

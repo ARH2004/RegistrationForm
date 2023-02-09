@@ -8,7 +8,7 @@ export default {
     name: 'my-button'
 }
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 .btn{
     text-align: center;
     text-transform: uppercase;
