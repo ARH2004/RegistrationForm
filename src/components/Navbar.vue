@@ -10,6 +10,9 @@
                 <div class="navbar__btn">
                     <my-button @click="ToComeIn" class="navbar__btn">Войти</my-button>
                 </div>
+                <div v-for="(n, idx) in userArray" :key="idx">
+                    <p>{{ n.name }}</p>
+                </div>
             </div>
         </div>
     </div>

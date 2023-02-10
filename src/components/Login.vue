@@ -6,20 +6,30 @@
           <my-button class="login__enter log-btn">Войти</my-button>
           <my-button class="login__reg log-btn">Регистрация</my-button>
         </div>
-        <my-input placeholder="Введите имя" :text="name"> </my-input>
-        <my-input placeholder="Введите фамилию" :text="surname"> </my-input>
-        <my-input placeholder="Введите email" :text="email"> </my-input>
-        <my-input placeholder="Введите пароль" :text="password" :type="paswd">
+        <my-input placeholder="Введите имя" :text="name" v-model="modelName">
         </my-input>
         <my-input
-          placeholder="Поддтвердите пароль"
-          :text="confirmPassword"
+          placeholder="Введите фамилию"
+          :text="surname"
+          v-model="modelSurname"
+        ></my-input>
+        <my-input
+          placeholder="Введите email"
+          :text="email"
+          v-model="modelEmail"
+        ></my-input>
+        <my-input
+          placeholder="Введите пароль"
+          v-model="testPaswdOne"
+          :text="password"
           :type="paswd"
-        >
+        ></my-input>
+        <my-input :text="confirmPassword" :type="paswd" v-model="testPaswdTwo">
         </my-input>
+        <p v-if="test()" class="login__passNotpass">*пароли не совпадают</p>
 
         <div class="login__accept">
-          <my-button class="login__btn">Регистрация</my-button>
+          <my-button class="login__btn" @click="registr">Регистрация</my-button>
           <div class="bb"></div>
           <my-button class="login__google"
             >Продолжить с <strong>Google</strong></my-button
@@ -40,7 +50,31 @@ export default {
       password: "Пароль",
       confirmPassword: "Поддтвердите пароль",
       paswd: "password",
+      testPaswdOne: "",
+      testPaswdTwo: "",
+      modelName: "",
+      modelEmail: "",
+      modelSurname: "",
+      userArray: [],
     };
+  },
+  props: ['userArray'],
+  methods: {
+    test() {
+      if (this.testPaswdOne === this.testPaswdTwo) {
+        return false;
+      } else {
+        return true;
+      }
+    },
+    registr(){
+        const userName = {
+            name: this.modelName,
+            surname: this.modelSurname
+        }
+        this.userArray.push(userName)
+        this.$router.push('/')
+    },
   },
 };
 </script>
@@ -48,7 +82,7 @@ export default {
 .login {
   background: #985ace;
   height: 100vh;
-  overflow: hidden;
+  overflow-x: hidden;
   &__bacground {
     background: white;
     padding: 80px 105px 0 85px;
@@ -65,8 +99,6 @@ export default {
     height: 55px;
     color: white;
   }
-  &__items {
-  }
   &__enter {
     margin: 0px 0 40px 5px;
   }
@@ -79,6 +111,11 @@ export default {
     height: 55px;
     background: white;
     border: 1px solid #985ace;
+  }
+  &__passNotpass {
+    margin-left: 10px;
+    text-transform: lowercase;
+    color: red;
   }
 }
 

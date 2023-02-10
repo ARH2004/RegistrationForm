@@ -1,13 +1,13 @@
 <template>
   <div class="wrapper">
-    <p class="wrapper__text" :text="text">{{ text }}</p>
-    <input class="input" :type="type" :placeholder="placeholder" />
+    <span class="wrapper__text" :text="text">{{ text }}</span>
+    <input class="input" :type="type" :placeholder="placeholder" :value="modelValue" @input="$emit('update:modelValue', $event.target.value)"/>
   </div>
 </template>
 <script>
 export default {
   name: "my-input",
-  props: ['placeholder', 'text', 'type'],
+    props: ['placeholder', 'text', 'type', 'modelValue'],
 };
 </script>
 <style lang="scss" scoped>
