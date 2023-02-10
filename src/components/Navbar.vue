@@ -10,9 +10,6 @@
                 <div class="navbar__btn">
                     <my-button @click="ToComeIn" class="navbar__btn">Войти</my-button>
                 </div>
-                <div v-for="(n, idx) in userArray" :key="idx">
-                    <p>{{ n.name }}</p>
-                </div>
             </div>
         </div>
     </div>
@@ -24,12 +21,12 @@ export default {
         ToComeIn(){
             return this.$router.push('/login')
         }
-    }
+    },
 }
 </script>
 <style lang="scss">
 .container{
-    width: 900px;
+    width: 1000px;
     margin: 0 auto;
 }
 
